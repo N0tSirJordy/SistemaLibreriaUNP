@@ -7,7 +7,20 @@ public class Main{
     ap= new Main();
     biblioteca=ap.generarLibros();
   }
-   public ArrayList<Libro> generarLibro(){
+public Usuario ingresarUsuario(){
+        Scanner sc;
+        Usuario person;
+        String dni;
+        String nombre;
+        sc = new Scanner(System.in);
+        System.out.print("Nombre del usuario: ");
+        nombre = sc.nextLine();
+        System.out.print("DNI: ");
+        dni = sc.nextLine();
+        person = new Usuario(nombre,dni);
+        return person;
+    }
+  public ArrayList<Libro> generarLibro(){
       ArrayList <Libro> biblio;
       Scanner teclado;
       int cantidad;
@@ -46,4 +59,17 @@ public class Main{
     nuev_libro = new Libro(titulo,autor,editorial ,codigo,"Disponible");
     return nuev_libro;
   }
+  public Libro ingresarLib_Usuario(){
+        Scanner teclado;
+        String titulo;
+        String autor;
+        Libro busLibro;
+        teclado= new Scanner(System.in);
+        System.out.print("INGRESE EL LIBRO QUE BUSCA:");
+        titulo=teclado.nextLine();
+        System.out.print("INGRESE AUTOR");
+        autor=teclado.nextLine();
+        busLibro= new Libro(titulo,autor," ");
+        return busLibro;
+    }
 }
