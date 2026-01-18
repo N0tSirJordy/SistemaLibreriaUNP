@@ -119,11 +119,16 @@ public class Main{
         busLibro= new Libro(titulo,autor," ");
         return busLibro;
   }
-  //Transaccion de libros
+  /*
+    Transaccion de Libro :
+    - Se ingresa el nombre del libro a buscar
+    - Se compara en el Arraylist biblioteca
+    - Si esta disponible cambia a Prestado y nos da un ticket
+  */
   public void transaccionLibro(Usuario persona,Libro libro_busqueda , ArrayList<Libro> biblioteca){
       String titulo;
       Prestamo transaccion;
-      titulo=libro_busqueda.getAutor();
+      titulo=libro_busqueda.getNombre();
       for(Libro libro:biblioteca){
           if(libro.getNombre().equals(titulo)){
               if (libro.getEstado().equalsIgnoreCase("Disponible")) {
@@ -137,7 +142,10 @@ public class Main{
           }
       }
   }
-  //Devolucion de libros 
+  /*
+  Devolucion de libros:
+  -Cambio de estado del libro a Disponible
+  */
   public void procesarDevolucion(Usuario persona,Libro libro_dev,ArrayList<Libro> biblioteca) {
     String titulo ;
     Prestamo transac;
