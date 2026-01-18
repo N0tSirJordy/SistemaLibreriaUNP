@@ -26,7 +26,7 @@ public class Main{
         libroaux=ap.ingresarLib_Usuario();
         ap.procesarDevolucion(persona,libroaux,biblioteca);
       }
-    }while(opcion!=0);
+    }while(opcion < 0 || opcion > 3);
   }
   //Menu de opciones para el encargado
   public int opcionesBiblio(){
@@ -123,7 +123,7 @@ public class Main{
   public void transaccionLibro(Usuario persona,Libro libro_busqueda , ArrayList<Libro> biblioteca){
       String titulo;
       Prestamo transaccion;
-      titulo=libro_busqueda.getAutor();
+      titulo=libro_busqueda.getNombre();
       transaccion= new Prestamo(libro_busqueda, persona);
       for(Libro libro:biblioteca){
           if(libro.getNombre().equals(titulo)){
