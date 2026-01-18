@@ -119,21 +119,16 @@ public class Main{
         busLibro= new Libro(titulo,autor," ");
         return busLibro;
   }
-  /*
-    Transaccion de Libro :
-    - Se ingresa el nombre del libro a buscar
-    - Se compara en el Arraylist biblioteca
-    - Si esta disponible cambia a Prestado y nos da un ticket
-  */
+  //Transaccion de libros
   public void transaccionLibro(Usuario persona,Libro libro_busqueda , ArrayList<Libro> biblioteca){
       String titulo;
       Prestamo transaccion;
-      titulo=libro_busqueda.getNombre();
+      titulo=libro_busqueda.getAutor();
+      transaccion= new Prestamo(libro_busqueda, persona);
       for(Libro libro:biblioteca){
           if(libro.getNombre().equals(titulo)){
               if (libro.getEstado().equalsIgnoreCase("Disponible")) {
                   libro.setEstado("Prestado"); 
-                  transaccion= new Prestamo(libro, persona);
                   System.out.println("--- PROCESANDO PRÉSTAMO ---");
                   transaccion.imprimirTicket();
               } else {
@@ -142,19 +137,18 @@ public class Main{
           }
       }
   }
-  /*
-  Devolucion de libros:
-  -Cambio de estado del libro a Disponible
-  */
+  //Devolucion de libros 
   public void procesarDevolucion(Usuario persona,Libro libro_dev,ArrayList<Libro> biblioteca) {
     String titulo ;
-    Prestamo transac;
+    Prestamo devolucion;
     titulo = libro_dev.getNombre();
       for(Libro libro:biblioteca){
           if(libro.getNombre().equals(titulo)){
               if(libro.getEstado().equalsIgnoreCase("Prestado")) {
-                  libro.setEstado("Disponible"); 
-                  transac = new Prestamo(libro,null);
+                  libro.setEstado("Disponible");
+                  devolucion= new Prestamo(libro, persona);
+                  System.out.println("--- PROCESANDO DEVOLUCIón ---");
+                  devolucion.procesarCobroDevolucion(); 
               }
           }
       }
