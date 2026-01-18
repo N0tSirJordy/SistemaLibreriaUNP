@@ -124,11 +124,11 @@ public class Main{
       String titulo;
       Prestamo transaccion;
       titulo=libro_busqueda.getAutor();
+      transaccion= new Prestamo(libro_busqueda, persona);
       for(Libro libro:biblioteca){
           if(libro.getNombre().equals(titulo)){
               if (libro.getEstado().equalsIgnoreCase("Disponible")) {
                   libro.setEstado("Prestado"); 
-                  transaccion= new Prestamo(libro, persona);
                   System.out.println("--- PROCESANDO PRÉSTAMO ---");
                   transaccion.imprimirTicket();
               } else {
@@ -140,12 +140,15 @@ public class Main{
   //Devolucion de libros 
   public void procesarDevolucion(Usuario persona,Libro libro_dev,ArrayList<Libro> biblioteca) {
     String titulo ;
-    Prestamo transac;
+    Prestamo devolucion;
     titulo = libro_dev.getNombre();
       for(Libro libro:biblioteca){
           if(libro.getNombre().equals(titulo)){
               if(libro.getEstado().equalsIgnoreCase("Prestado")) {
-                  libro.setEstado("Disponible"); 
+                  libro.setEstado("Disponible");
+                  devolucion= new Prestamo(libro, persona);
+                  System.out.println("--- PROCESANDO DEVOLUCIón ---");
+                  devolucion.procesarCobroDevolucion(); 
               }
           }
       }
