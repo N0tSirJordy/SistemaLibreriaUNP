@@ -5,7 +5,12 @@
     private String codigo;
     private String estado;
     //Constructor 
-    public Libro (String nombre,String autor,Strinf editorial,String codigo,String estado){
+    public Libro (String nombre,String autor,String editorial,String codigo,String estado){
+        this.nombre=nombre;
+        this.autor=autor;
+        this.estado=estado;
+    }
+    public Libro(String nombre,String autor,String estado){
         this.nombre=nombre;
         this.autor=autor;
         this.estado=estado;
@@ -41,3 +46,4 @@
     public void setEstado(String estado){
         this.estado=estado;
     }
+}

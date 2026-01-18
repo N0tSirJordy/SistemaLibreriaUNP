@@ -4,22 +4,29 @@ public class Main{
   public static void main(String[] args){
     Main ap;
     ArrayList<Libro> biblioteca;
+    int opcion;
     Usuario persona;
     Libro libroaux;
-    ap= new Main();
+    biblioteca=null;
+    ap =new Main();
     do{
       opcion=ap.opcionesBiblio();
       if(opcion==1){
         biblioteca=ap.genListaLibros();
       }else if(opcion==2){
+        //se debe saber el nombre de la Persona que quiere un libro
         persona = ap.ingresarUsuario() ;
+        //El libro que quiere
         libroaux=ap.ingresarLib_Usuario();
+        /* Se procede a encontrar el libro en el arreglo y
+        hacer el debido proceso*/
         ap.transaccionLibro(persona,libroaux,biblioteca);
       } else{
         persona = ap.ingresarUsuario() ;
         libroaux=ap.ingresarLib_Usuario();
         ap.procesarDevolucion(persona,libroaux,biblioteca);
-    }
+      }
+    }while(opcion!=0);
   }
   //Menu de opciones para el encargado
   public int opcionesBiblio(){
@@ -36,6 +43,7 @@ public class Main{
     }while(opcion>=0||opcion<=3);
     return opcion;
   }
+  //Se ingresan los datos de la persona que requiere el libro
   public Usuario ingresarUsuario(){
         Scanner sc;
         Usuario person;
@@ -66,7 +74,13 @@ public class Main{
       }
       return biblio;
   }
-    //Metodo para ingresar los datos de un libro
+  /*Metodo para ingresar los datos de un libro:
+  -Nombre del libro
+  -Autor 
+  -Editorial
+  -Codigo del libro 
+  -Estado("Disponible o Prestado")
+  */
   public Libro ingresarLibro(){
     Scanner teclado;
     Libro nuev_libro;
@@ -90,6 +104,8 @@ public class Main{
     nuev_libro = new Libro(titulo,autor,editorial ,codigo,"Disponible");
     return nuev_libro;
   }
+  /*-Ingreso de datos del libro que se busca
+    -El ususario no sabe si el libro esta disponible o no asi que se le pone vacio en estado*/
   public Libro ingresarLib_Usuario(){
         Scanner teclado;
         String titulo;
@@ -103,6 +119,7 @@ public class Main{
         busLibro= new Libro(titulo,autor," ");
         return busLibro;
   }
+  //Transaccion de libros
   public void transaccionLibro(Usuario persona,Libro libro_busqueda , ArrayList<Libro> biblioteca){
       String titulo;
       Prestamo transaccion;
@@ -120,15 +137,16 @@ public class Main{
           }
       }
   }
+  //Devolucion de libros 
   public void procesarDevolucion(Usuario persona,Libro libro_dev,ArrayList<Libro> biblioteca) {
     String titulo ;
-    Prestamo trans;
+    Prestamo transac;
     titulo = libro_dev.getNombre();
       for(Libro libro:biblioteca){
           if(libro.getNombre().equals(titulo)){
-              if (libro.getEstado().equalsIgnoreCase("Prestado")) {
+              if(libro.getEstado().equalsIgnoreCase("Prestado")) {
                   libro.setEstado("Disponible"); 
-                  trans = new Prestamo(libro,null);
+                  transac = new Prestamo(libro,null);
               }
           }
       }
