@@ -7,7 +7,7 @@ public class Main{
     ap= new Main();
     biblioteca=ap.generarLibros();
   }
-public Usuario ingresarUsuario(){
+  public Usuario ingresarUsuario(){
         Scanner sc;
         Usuario person;
         String dni;
@@ -71,5 +71,35 @@ public Usuario ingresarUsuario(){
         autor=teclado.nextLine();
         busLibro= new Libro(titulo,autor," ");
         return busLibro;
-    }
+  }
+  public void transaccionLibro(Usuario persona,Libro libro_busqueda , ArrayList<Libro> biblioteca){
+      String titulo;
+      Prestamo transaccion;
+      titulo=libro_busqueda.getAutor();
+      for(Libro libro:biblioteca){
+          if(libro.getNombre().equals(titulo)){
+              if (libro.getEstado().equalsIgnoreCase("Disponible")) {
+                  libro.setEstado("Prestado"); 
+                  transaccion= new Prestamo(libro, persona);
+                  System.out.println("--- PROCESANDO PRÉSTAMO ---");
+                  transaccion.imprimirTicket();
+              } else {
+                  System.out.println("¡ERROR! El libro '" + libro.getNombre() + "' no está disponible.");
+            }
+          }
+      }
+  }
+  public void procesarDevolucion(Usuario persona,Libro libro_dev,ArrayList<Libro> biblioteca) {
+    String titulo ;
+    Prestamo trans;
+    titulo = libro_dev.getNombre();
+      for(Libro libro:biblioteca){
+          if(libro.getNombre().equals(titulo)){
+              if (libro.getEstado().equalsIgnoreCase("Prestado")) {
+                  libro.setEstado("Disponible"); 
+                  trans = new Prestamo(libro,null);
+              }
+          }
+      }
+  }
 }
