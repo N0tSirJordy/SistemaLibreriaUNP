@@ -146,7 +146,6 @@ public class Main{
           if(libro.getNombre().equals(titulo)){
               if(libro.getEstado().equalsIgnoreCase("Prestado")) {
                   libro.setEstado("Disponible"); 
-                  transac = new Prestamo(libro,null);
               }
           }
       }
