@@ -1,4 +1,4 @@
-    public class Libro{
+class Libro{
     private String nombre;
     private String editorial;
     private String autor;

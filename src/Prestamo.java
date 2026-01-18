@@ -1,5 +1,5 @@
-public class Prestamo{
-    class Prestamo {
+
+class Prestamo {
     private Libro libro;
     private Usuario usuario;
     private LocalDate fechaEntrega;
@@ -12,6 +12,5 @@ public class Prestamo{
     public void imprimirTicket() {
         System.out.println("Libro: " + libro.getNombre() + " | Usuario: " + usuario.getNombre_Alum());
         System.out.println("Fecha límite de devolución: " + fechaEntrega);
-    }
     }
 }

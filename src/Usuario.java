@@ -1,4 +1,4 @@
-public class Usuario{
+class Usuario{
     private String nombre_Alum;
     private String dni;
     
