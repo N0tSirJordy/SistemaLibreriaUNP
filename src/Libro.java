@@ -4,12 +4,13 @@ public class Libro{
     private String autor;
     private String codigo;
     private String estado;
-    //Constructor 
+    //Constructor para ingreso de libros a lista
     public Libro (String nombre,String autor,String editorial,String codigo,String estado){
         this.nombre=nombre;
         this.autor=autor;
         this.estado=estado;
     }
+    //Constructor de libro para el usuario que quiere el prestamo
     public Libro(String nombre,String autor,String estado){
         this.nombre=nombre;
         this.autor=autor;

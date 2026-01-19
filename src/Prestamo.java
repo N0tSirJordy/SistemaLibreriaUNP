@@ -1,12 +1,12 @@
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 public class Prestamo {
-    private Libro libro;
+    private Libro libro_pres;
     private Usuario usuario;
     private LocalDate fechaEntrega;
     //Constructor Prestamo
     public Prestamo(Libro libro, Usuario usuario) {
-        this.libro = libro;
+        this.libro_pres = libro_pres;
         this.usuario = usuario;
         this.fechaEntrega = LocalDate.now().plusDays(15);
     }
